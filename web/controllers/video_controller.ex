@@ -23,10 +23,11 @@ defmodule Frontend.VideoController do
 
 
     File.stream!(video, [:read], 1024)
-    |> Enum.reduce 0, fn(data, acc) ->
-      { :ok, _conn } = chunk(conn, data)
+    |> Enum.reduce conn, fn data, conn ->
+      { :ok, conn } = chunk(conn, data)
+      conn
     end
-    { :ok, _conn } = chunk(conn, 0)
+    |> chunk(0)
   end
 
   def download(conn, %{"video" => video}) do
