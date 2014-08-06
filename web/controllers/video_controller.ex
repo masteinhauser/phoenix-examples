@@ -15,7 +15,7 @@ defmodule Frontend.VideoController do
     conn = put_resp_content_type(conn, content_type, nil)
 
     # {:ok, data} = File.stat(video)
-    conn = send_chunked(conn, 206)
+    conn = send_chunked(conn, 200)
 
 
     {:ok, file_info} = File.stat(video)
