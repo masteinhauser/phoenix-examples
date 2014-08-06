@@ -5,8 +5,9 @@ defmodule Frontend.Router do
   get "/", Frontend.PageController, :index, as: :page
   get "/hello", Frontend.PageController, :hello
   get "/video", Frontend.PageController, :video
+  get "/bytes", Frontend.PageController, :bytes
 
   get "/video/:video", Frontend.VideoController, :send
   get "/stream/:video", Frontend.VideoController, :stream
-  # get "/stream/:video", Frontend.VideoController, :send
+  get "/bytes/:video", Frontend.VideoController, :bytes
 end
