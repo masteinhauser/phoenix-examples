@@ -7,6 +7,6 @@ defmodule Frontend.Router do
   get "/video", Frontend.PageController, :video
 
   get "/video/:video", Frontend.VideoController, :send
-  # get "/stream/:video", Frontend.VideoController, :send
   get "/stream/:video", Frontend.VideoController, :stream
+  # get "/stream/:video", Frontend.VideoController, :send
 end

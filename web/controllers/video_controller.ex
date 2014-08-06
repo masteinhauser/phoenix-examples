@@ -12,17 +12,21 @@ defmodule Frontend.VideoController do
   def stream(conn, %{"video" => video}) do
     video = "/Users/myles/code/github/masteinhauser/vc-frontend/web/files/sample.mp4"
     content_type = Plug.MIME.path(video)
-    put_resp_content_type conn, content_type
+    conn = put_resp_content_type(conn, content_type, nil)
 
     # {:ok, data} = File.stat(video)
-    conn = send_chunked conn, 206
+    conn = send_chunked(conn, 206)
 
 
-    File.stream! video, [:read], 10240
-    |> Enum.each fn(data) ->
-      { :ok, conn } = chunk conn, data
+    {:ok, file_info} = File.stat(video)
+    # conn = put_resp_header(conn, "Content-Range", "bytes #{acc}-1024/#{file_info.size}")
+
+
+    File.stream!(video, [:read], 1024)
+    |> Enum.reduce 0, fn(data, acc) ->
+      { :ok, _conn } = chunk(conn, data)
     end
-    { :ok, conn } = chunk conn, 0
+    { :ok, _conn } = chunk(conn, 0)
   end
 
   def download(conn, %{"video" => video}) do
