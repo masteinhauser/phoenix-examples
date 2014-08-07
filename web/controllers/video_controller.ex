@@ -58,7 +58,7 @@ defmodule Frontend.VideoController do
     |> resp(206, data)
     |> put_resp_header("accept-ranges", "bytes")
     |> put_resp_header("content-type", content_type)
-    |> put_resp_header("content-length", "#{file_info.size}")
+    |> put_resp_header("content-length", "#{range_limit}")
     |> put_resp_header("content-range", "bytes #{range_start}-#{range_end}/#{file_info.size}")
     |> send_resp()
   end
