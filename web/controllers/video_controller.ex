@@ -31,20 +31,17 @@ defmodule Frontend.VideoController do
     {:ok, file_info} = File.stat(video)
 
     hdr_range = get_req_header(conn, "range")
+    [range_type, range_start, range_end] =
+      case hdr_range do
+        [] -> ["bytes", "0", "999"]
+        _  -> String.split(List.last(hdr_range), ["=", "-"])
+      end
 
-    case hdr_range do
-      [] ->
-        [range_type, range_start, range_end] = ["bytes", "0", "999"]
-      _ ->
-        [range_type, range_start, range_end] = String.split(List.last(hdr_range), ["=", "-"])
-    end
-
-    case range_end do
-      "" ->
-        range_end = "#{file_info.size - 1}"
-      _ ->
-        range_end
-    end
+    range_end =
+      case range_end do
+        "" -> "#{file_info.size - 1}"
+        _  -> range_end
+      end
 
     [range_start, range_end] = Enum.map([range_start, range_end], fn(x) -> String.to_integer(x) end)
     range_limit = range_end - range_start + 1
@@ -77,8 +74,6 @@ defmodule Frontend.VideoController do
   end
 
   def upload(conn, %{"file" => file, "name" => name}) do
-
-    # {:ok, file} =
     send_response(conn, 200, "text/plain", "Upload Received: file => #{file.filename}, name => #{name}")
   end
 
