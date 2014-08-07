@@ -58,6 +58,22 @@ defmodule Frontend.VideoController do
     send_resp(conn, 206, data)
   end
 
+  def bytes_head(conn, %{"video" => video}) do
+    video = "/Users/myles/code/github/masteinhauser/vc-frontend/web/files/#{video}"
+    {:ok, file_info} = File.stat(video)
+
+    content_type = Plug.MIME.path(video)
+    conn = put_resp_header(conn, "Accept-Ranges", "bytes")
+    conn = put_resp_header(conn, "Content-Type", content_type)
+    conn = put_resp_header(conn, "Content-Length", "#{file_info.size}")
+    send_resp(conn, 200, "")
+  end
+
+  def upload(conn) do
+    {:ok, video_upload} =
+    conn
+  end
+
   def download(conn, %{"video" => video}) do
     video = "/Users/myles/code/github/masteinhauser/vc-frontend/web/files/#{video}"
     {:ok, file_info} = File.stat(video)
