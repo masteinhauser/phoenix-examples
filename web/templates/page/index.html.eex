@@ -1,6 +1,25 @@
 <div class="jumbotron">
-  <h2>Welcome to Phoenix!</h2>
+  <h2>Welcome to Phoenix Examples!</h2>
   <p class="lead">Phoenix is an Elixir Web Framework targeting full-featured, fault tolerant applications with realtime functionality.</p>
+    <h3>Examples</h3>
+    <p>Code avilable at the <a href="https://github.com/masteinhauser/phoenix-examples">source</a></p>
+    <ul class="text-left">
+      <li>
+        <a href="/hello">Hello!</a>
+      </li>
+      <li>
+        <a href="/comment">Text Form</a>
+      </li>
+      <li>
+        <a href="/upload">File Upload</a>
+      </li>
+      <li>
+        <a href="/video">Video Stream (HTTP Chunking)</a>
+      </li>
+      <li>
+        <a href="/bytes">Video Stream (HTTP Byte Serving)</a>
+      </li>
+    </ul>
 </div>
 
 <div class="row marketing">
@@ -27,6 +46,9 @@
       </li>
       <li>
         <a href="https://twitter.com/chris_mccord">@chris_mccord</a>
+      </li>
+      <li>
+        <a href="https://twitter.com/masteinhauser">@masteinhauser</a>
       </li>
     </ul>
   </div>
