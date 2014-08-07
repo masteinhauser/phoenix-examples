@@ -74,7 +74,9 @@ defmodule Frontend.VideoController do
   end
 
   def upload(conn, %{"file" => file, "name" => name}) do
-    send_response(conn, 200, "text/plain", "Upload Received: file => #{file.filename}, name => #{name}")
+    {:ok, bytes_copied} = File.copy(file.path, "#{System.cwd}/web/files/#{file.filename}")
+    content_type = Plug.MIME.path(file.filename)
+    render conn, "bytes", video: file.filename, content_type: content_type
   end
 
   def download(conn, %{"video" => video}) do
