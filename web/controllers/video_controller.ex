@@ -1,12 +1,12 @@
 defmodule Frontend.VideoController do
   use Phoenix.Controller
+  plug Plug.Parsers, parsers: [:urlencoded, :multipart], limit: 1_000_000_000
 
   def send(conn, %{"video" => video}) do
-    video = "/Users/myles/code/github/masteinhauser/vc-frontend/web/files/sample.mp4"
+    video = "/Users/myles/code/github/masteinhauser/vc-frontend/web/files/#{video}"
     {:ok, file_info} = File.stat(video)
 
     content_type = Plug.MIME.path(video)
-    # {:ok, data} = File.stat(video)
     {:ok, data} = File.read(video)
     send_response conn, 200, content_type, data
   end
@@ -46,16 +46,18 @@ defmodule Frontend.VideoController do
     [range_start, range_end] = Enum.map([range_start, range_end], fn(x) -> String.to_integer(x) end)
     range_limit = range_end - range_start + 1
 
-    content_type = Plug.MIME.path(video)
-    conn = put_resp_header(conn, "Accept-Ranges", "bytes")
-    conn = put_resp_header(conn, "Content-Type", content_type)
-    # conn = put_resp_header(conn, "Content-Length", "#{range_limit}")
-    conn = put_resp_header(conn, "Content-Range", "bytes #{range_start}-#{range_end}/#{file_info.size}")
-
     {:ok, video_device} = :file.open(video, [:read, :binary])
     {:ok, video_pos} = :file.position(video_device, range_start)
     {:ok, data} = :file.read(video_device, range_limit)
-    send_resp(conn, 206, data)
+
+    content_type = Plug.MIME.path(video)
+    conn
+    |> resp(206, data)
+    |> put_resp_header("accept-ranges", "bytes")
+    |> put_resp_header("content-type", content_type)
+    |> put_resp_header("content-length", "#{file_info.size}")
+    |> put_resp_header("content-range", "bytes #{range_start}-#{range_end}/#{file_info.size}")
+    |> send_resp()
   end
 
   def bytes_head(conn, %{"video" => video}) do
@@ -69,12 +71,12 @@ defmodule Frontend.VideoController do
     |> put_resp_header("content-type", content_type)
     |> put_resp_header("content-length", "#{file_info.size}")
     |> send_resp()
-    conn
   end
 
-  def upload(conn) do
-    {:ok, video_upload} =
-    conn
+  def upload(conn, %{"file" => file, "name" => name}) do
+
+    # {:ok, file} =
+    send_response(conn, 200, "text/plain", "Upload Received: file => #{file}, name => #{name}")
   end
 
   def download(conn, %{"video" => video}) do

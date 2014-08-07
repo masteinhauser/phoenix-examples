@@ -16,6 +16,9 @@ defmodule Frontend.PageController do
   def upload(conn, _params) do
     render conn, "upload"
   end
+  def comment(conn, _params) do
+    render conn, "comment"
+  end
 
   def show(conn, %{"page" => "admin"}) do
     redirect conn, Router.page_path(page: "unauthorized")

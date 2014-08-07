@@ -3,6 +3,6 @@
   "inflex": {:package, "0.2.4"},
   "jazz": {:package, "0.2.0"},
   "linguist": {:package, "0.1.1"},
-  "phoenix": {:git, "git://github.com/phoenixframework/phoenix.git", "616977688e7371bc5e066646717e0d44071225fe", []},
+  "phoenix": {:git, "git://github.com/phoenixframework/phoenix.git", "b4cb7a8c61ccfbc69348b582f51b23e32599f70a", []},
   "plug": {:package, "0.5.3"},
   "ranch": {:package, "1.0.0"}}

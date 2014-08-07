@@ -7,10 +7,14 @@ defmodule Frontend.Router do
   get "/video", Frontend.PageController, :video
   get "/bytes", Frontend.PageController, :bytes
   get "/upload", Frontend.PageController, :upload
+  get "/comment", Frontend.PageController, :comment
+
+  head "/bytes/:video", Frontend.VideoController, :bytes_head
 
   get "/video/:video", Frontend.VideoController, :send
   get "/stream/:video", Frontend.VideoController, :stream
-  head "/bytes/:video", Frontend.VideoController, :bytes_head
   get "/bytes/:video", Frontend.VideoController, :bytes
-  get "/video/upload", Frontend.VideoController, :upload
+
+  post "/video/upload", Frontend.VideoController, :upload
+  post "/video/comment", Frontend.CommentController, :comment
 end
