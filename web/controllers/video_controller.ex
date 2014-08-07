@@ -6,7 +6,7 @@ defmodule Frontend.VideoController do
   # To disable loading all automated plugs, set `parsers: false` in mix.exs
 
   def send(conn, %{"video" => video}) do
-    video = "/Users/myles/code/github/masteinhauser/vc-frontend/web/files/#{video}"
+    video = "#{System.cwd}/web/files/#{video}"
     {:ok, file_info} = File.stat(video)
 
     content_type = Plug.MIME.path(video)
@@ -15,7 +15,7 @@ defmodule Frontend.VideoController do
   end
 
   def stream(conn, %{"video" => video}) do
-    video = "/Users/myles/code/github/masteinhauser/vc-frontend/web/files/#{video}"
+    video = "#{System.cwd}/web/files/#{video}"
     {:ok, file_info} = File.stat(video)
 
     content_type = Plug.MIME.path(video)
@@ -27,7 +27,7 @@ defmodule Frontend.VideoController do
   end
 
   def bytes(conn, %{"video" => video}) do
-    video = "/Users/myles/code/github/masteinhauser/vc-frontend/web/files/#{video}"
+    video = "#{System.cwd}/web/files/#{video}"
     {:ok, file_info} = File.stat(video)
 
     hdr_range = get_req_header(conn, "range")
@@ -64,7 +64,7 @@ defmodule Frontend.VideoController do
   end
 
   def bytes_head(conn, %{"video" => video}) do
-    video = "/Users/myles/code/github/masteinhauser/vc-frontend/web/files/#{video}"
+    video = "#{System.cwd}/web/files/#{video}"
     {:ok, file_info} = File.stat(video)
 
     content_type = Plug.MIME.path(video)
@@ -83,7 +83,7 @@ defmodule Frontend.VideoController do
   end
 
   def download(conn, %{"video" => video}) do
-    video = "/Users/myles/code/github/masteinhauser/vc-frontend/web/files/#{video}"
+    video = "#{System.cwd}/web/files/#{video}"
     {:ok, file_info} = File.stat(video)
 
     content_type = Plug.MIME.path(video)
