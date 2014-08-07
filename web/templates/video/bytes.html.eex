@@ -1,14 +1,15 @@
 
 <div class="jumbotron" class="col-lg-12">
-  <h2>Example Video Streaming</h2>
+  <h2>Example Video Streaming from Upload</h2>
+  <p>Playing uploaded video: <%= @video %></p>
   <video controls="controls" autoplay="autoplay">
     <%= if @video do %>
       <%= if @content_type == "video/webm" do %>
-      <source src="/bytes/sample.webm"
-              type='video/webm;codecs="vp8, vorbis"'/>
+      <source src="/bytes/<%= @video %>"
+              type="video/webm"/>
       <% end %>
       <%= if @content_type == "video/mp4" do %>
-      <source src="/bytes/sample.mp4"
+      <source src="/bytes/<%= @video %>"
               type="video/mp4">
       <% end %>
     <% else %>
