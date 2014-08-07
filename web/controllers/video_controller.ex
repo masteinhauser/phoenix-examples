@@ -1,6 +1,9 @@
 defmodule Frontend.VideoController do
   use Phoenix.Controller
-  plug Plug.Parsers, parsers: [:urlencoded, :multipart], limit: 1_000_000_000
+
+  # For a list of what plugs are already included
+  # Check: https://github.com/phoenixframework/phoenix/blob/master/lib/phoenix/router.ex
+  # To disable loading all automated plugs, set `parsers: false` in mix.exs
 
   def send(conn, %{"video" => video}) do
     video = "/Users/myles/code/github/masteinhauser/vc-frontend/web/files/#{video}"
@@ -76,7 +79,7 @@ defmodule Frontend.VideoController do
   def upload(conn, %{"file" => file, "name" => name}) do
 
     # {:ok, file} =
-    send_response(conn, 200, "text/plain", "Upload Received: file => #{file}, name => #{name}")
+    send_response(conn, 200, "text/plain", "Upload Received: file => #{file.filename}, name => #{name}")
   end
 
   def download(conn, %{"video" => video}) do

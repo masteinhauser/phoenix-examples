@@ -1,7 +1,7 @@
 
 <div class="jumbotron" class="col-lg-12">
   <h2>Example Video Comment Addition</h2>
-  <form action="/video/comment"
+  <form action="/comment"
         enctype="application/x-www-form-urlencoded" method="post">
     <p>What video do you want to comment on?<br>
       <input type="text" name="video" size="40">
