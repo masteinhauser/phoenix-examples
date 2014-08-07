@@ -63,10 +63,13 @@ defmodule Frontend.VideoController do
     {:ok, file_info} = File.stat(video)
 
     content_type = Plug.MIME.path(video)
-    conn = put_resp_header(conn, "Accept-Ranges", "bytes")
-    conn = put_resp_header(conn, "Content-Type", content_type)
-    conn = put_resp_header(conn, "Content-Length", "#{file_info.size}")
-    send_resp(conn, 200, "")
+    conn
+    |> resp(200, "")
+    |> put_resp_header("accept-ranges", "bytes")
+    |> put_resp_header("content-type", content_type)
+    |> put_resp_header("content-length", "#{file_info.size}")
+    |> send_resp()
+    conn
   end
 
   def upload(conn) do
