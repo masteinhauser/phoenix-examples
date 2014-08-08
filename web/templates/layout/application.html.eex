@@ -17,7 +17,7 @@
         <ul class="nav nav-pills pull-right">
           <li><a href="https://github.com/phoenixframework/phoenix">Get Started</a></li>
         </ul>
-        <span class="logo"></span>
+        <a href="/"><span class="logo"></span></a>
       </div>
 
       <%= @inner %>
