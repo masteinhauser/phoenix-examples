@@ -5,4 +5,5 @@
   "linguist": {:package, "0.1.1"},
   "phoenix": {:git, "git://github.com/phoenixframework/phoenix.git", "b4cb7a8c61ccfbc69348b582f51b23e32599f70a", []},
   "plug": {:package, "0.5.3"},
+  "plug_byte_serve": {:git, "git://github.com/masteinhauser/plug_byte_serve.git", "dd96e9e42a43e39baa65f1a403c518c9b21c4f32", []},
   "ranch": {:package, "1.0.0"}}
