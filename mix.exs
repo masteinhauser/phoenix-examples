@@ -25,7 +25,8 @@ defmodule Frontend.Mixfile do
   defp deps do
     [
       {:phoenix, github: "phoenixframework/phoenix"},
-      {:cowboy, "~> 1.0.0"}
+      {:cowboy, "~> 1.0.0"},
+      {:plug_byte_serve, github: "masteinhauser/plug_byte_serve"},
     ]
   end
 end

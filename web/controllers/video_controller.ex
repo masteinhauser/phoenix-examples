@@ -27,49 +27,16 @@ defmodule Frontend.VideoController do
   end
 
   def bytes(conn, %{"video" => video}) do
-    video = "#{System.cwd}/web/files/#{video}"
-    {:ok, file_info} = File.stat(video)
-
-    hdr_range = get_req_header(conn, "range")
-    [range_type, range_start, range_end] =
-      case hdr_range do
-        [] -> ["bytes", "0", "999"]
-        _  -> String.split(List.last(hdr_range), ["=", "-"])
-      end
-
-    range_end =
-      case range_end do
-        "" -> "#{file_info.size - 1}"
-        _  -> range_end
-      end
-
-    [range_start, range_end] = Enum.map([range_start, range_end], fn(x) -> String.to_integer(x) end)
-    range_limit = range_end - range_start + 1
-
-    {:ok, video_device} = :file.open(video, [:read, :binary])
-    {:ok, video_pos} = :file.position(video_device, range_start)
-    {:ok, data} = :file.read(video_device, range_limit)
-
-    content_type = Plug.MIME.path(video)
+    path = "web/files/"
     conn
-    |> resp(206, data)
-    |> put_resp_header("accept-ranges", "bytes")
-    |> put_resp_header("content-type", content_type)
-    |> put_resp_header("content-length", "#{range_limit}")
-    |> put_resp_header("content-range", "bytes #{range_start}-#{range_end}/#{file_info.size}")
+    |> PlugByteServe.call([path: path, file: video])
     |> send_resp()
   end
 
   def bytes_head(conn, %{"video" => video}) do
-    video = "#{System.cwd}/web/files/#{video}"
-    {:ok, file_info} = File.stat(video)
-
-    content_type = Plug.MIME.path(video)
+    path = "web/files/"
     conn
-    |> resp(200, "")
-    |> put_resp_header("accept-ranges", "bytes")
-    |> put_resp_header("content-type", content_type)
-    |> put_resp_header("content-length", "#{file_info.size}")
+    |> PlugByteServe.call([path: path, file: video])
     |> send_resp()
   end
 
