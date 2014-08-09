@@ -23,7 +23,8 @@
       <%= @inner %>
 
       <div class="footer">
-        <p><a href="http://phoenixframework.org">phoenixframework.org</a></p>
+        <!-- <p><a href="http://phoenixframework.org">phoenixframework.org</a></p> -->
+        <p><a href="https://github.com/phoenixframework/phoenix">phoenixframework.org</a></p>
       </div>
 
     </div> <!-- /container -->
