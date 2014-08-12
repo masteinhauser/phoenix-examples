@@ -2,7 +2,7 @@ defmodule Frontend.Mixfile do
   use Mix.Project
 
   def project do
-    [ app: :phoenix_examples,
+    [ app: :frontend,
       version: "0.1.0",
       elixir: "~> 0.15.0",
       elixirc_paths: ["lib", "web"],
