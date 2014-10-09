@@ -30,14 +30,12 @@ defmodule Frontend.VideoController do
     path = "web/files/"
     conn
     |> PlugByteServe.call([path: path, file: video])
-    |> send_resp()
   end
 
   def bytes_head(conn, %{"video" => video}) do
     path = "web/files/"
     conn
     |> PlugByteServe.call([path: path, file: video, limit: 0])
-    |> send_resp()
   end
 
   def upload(conn, %{"file" => file, "name" => name}) do
