@@ -1,5 +1,6 @@
 defmodule Frontend.VideoController do
   use Phoenix.Controller
+  plug :action
 
   # For a list of what plugs are already included
   # Check: https://github.com/phoenixframework/phoenix/blob/master/lib/phoenix/router.ex

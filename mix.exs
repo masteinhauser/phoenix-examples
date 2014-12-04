@@ -4,8 +4,9 @@ defmodule Frontend.Mixfile do
   def project do
     [ app: :frontend,
       version: "0.1.0",
-      elixir: "~> 1.0.0",
+      elixir: "~> 1.0.2",
       elixirc_paths: ["lib", "web"],
+      compilers: [:phoenix] ++ Mix.compilers,
       deps: deps ]
   end
 
@@ -13,7 +14,7 @@ defmodule Frontend.Mixfile do
   def application do
     [
       mod: { Frontend, [] },
-      applications: [:postgrex, :ecto, :phoenix]
+      applications: [:logger, :postgrex, :ecto, :phoenix, :cowboy]
     ]
   end
 
@@ -24,8 +25,7 @@ defmodule Frontend.Mixfile do
   # { :barbat, "~> 0.1", github: "elixir-lang/barbat" }
   defp deps do
     [
-      {:phoenix,          "~> 0.4.1"},
-      {:plug,             "~> 0.7.0", override: true},
+      {:phoenix,          "~> 0.5.0"},
       {:plug_byte_serve,  "~> 0.3.0"},
       {:cowboy,           "~> 1.0.0"},
       {:postgrex,         ">= 0.0.0"},
