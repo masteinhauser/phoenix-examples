@@ -1,5 +1,6 @@
 defmodule Frontend.VideoController do
   use Phoenix.Controller
+  plug :put_layout, "application.html"
   plug :action
 
   # For a list of what plugs are already included
@@ -12,7 +13,9 @@ defmodule Frontend.VideoController do
 
     content_type = Plug.MIME.path(video)
     {:ok, data} = File.read(video)
-    send_response conn, 200, content_type, data
+    conn
+    |> put_resp_content_type(content_type)
+    |> send_resp 200, data
   end
 
   def stream(conn, %{"video" => video}) do
@@ -31,20 +34,18 @@ defmodule Frontend.VideoController do
     path = "web/files/"
     conn
     |> PlugByteServe.call([path: path, file: video])
-    |> send_resp()
   end
 
   def bytes_head(conn, %{"video" => video}) do
     path = "web/files/"
     conn
     |> PlugByteServe.call([path: path, file: video, limit: 0])
-    |> send_resp()
   end
 
   def upload(conn, %{"file" => file, "name" => name}) do
     {:ok, bytes_copied} = File.copy(file.path, "#{System.cwd}/web/files/#{file.filename}")
     content_type = Plug.MIME.path(file.filename)
-    render conn, "bytes", video: file.filename, content_type: content_type
+    render conn, "bytes.html", video: file.filename, content_type: content_type
   end
 
   def download(conn, %{"video" => video}) do

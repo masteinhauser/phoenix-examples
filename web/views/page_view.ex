@@ -1,4 +1,3 @@
 defmodule Frontend.PageView do
-  use Frontend.Views
-
+  use Frontend.View
 end
