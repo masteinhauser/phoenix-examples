@@ -6,17 +6,23 @@ use Mix.Config
 # file won't be loaded nor affect the parent project.
 
 config :phoenix, Frontend.Router,
-  port: System.get_env("PORT"),
-  ssl: false,
-  code_reload: false,
-  static_assets: true,
-  cookies: true,
-  session_key: "_frontend_key",
-  session_secret: "LQG7Q1$VS1=FFGFV_7HY@EP+Y2ED29I72P!GI^JD=I3LC0+&X9M$N=%L89S4U(*G%C1#4!!1Y668UBO2"
+  url: [host: "localhost"],
+  http: [port: System.get_env("PORT")],
+  https: false,
+  secret_key_base: "LQG7Q1$VS1=FFGFV_7HY@EP+Y2ED29I72P!GI^JD=I3LC0+&X9M$N=%L89S4U(*G%C1#4!!1Y668UBO2",
+  catch_errors: true,
+  debug_errors: false,
+  error_controller: Upgrade.PageController
 
-config :phoenix, :logger,
-  level: :error
+# Session configuration
+config :phoenix, Frontend.Router,
+  session: [store: :cookie,
+            key: "_frontend_key"]
 
+# Configures Elixir's Logger
+config :logger, :console,
+  format: "$time $metadata[$level] $message\n",
+  metadata: [:request_id]
 
 # Import environment specific config. Note, this must remain at the bottom of
 # this file to properly merge your previous config entries.

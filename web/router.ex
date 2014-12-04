@@ -1,23 +1,25 @@
 defmodule Frontend.Router do
   use Phoenix.Router
 
-  plug Plug.Static, at: "/static", from: :frontend
+  scope "/" do
+    pipe_through :browser
 
-  scope alias: Frontend do
-    get "/", PageController, :index, as: :page
-    get "/hello", PageController, :hello
-    get "/video", PageController, :video
-    get "/bytes", PageController, :bytes
-    get "/upload", PageController, :upload
-    get "/comment", PageController, :comment
+    # plug Plug.Static, at: "/static", from: :frontend
 
-    head "/bytes/:video", VideoController, :bytes_head
+    get "/", Frontend.PageController, :index, as: :page
+    get "/hello", Frontend.PageController, :hello
+    get "/video", Frontend.PageController, :video
+    get "/bytes", Frontend.PageController, :bytes
+    get "/upload", Frontend.PageController, :upload
+    get "/comment", Frontend.PageController, :comment
 
-    get "/video/:video", VideoController, :send
-    get "/stream/:video", VideoController, :stream
-    get "/bytes/:video", VideoController, :bytes
+    head "/bytes/:video", Frontend.VideoController, :bytes_head
 
-    post "/upload", VideoController, :upload
-    post "/comment", CommentController, :comment
+    get "/video/:video", Frontend.VideoController, :send
+    get "/stream/:video", Frontend.VideoController, :stream
+    get "/bytes/:video", Frontend.VideoController, :bytes
+
+    post "/upload", Frontend.VideoController, :upload
+    post "/comment", Frontend.CommentController, :comment
   end
 end

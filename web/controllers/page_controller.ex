@@ -1,6 +1,8 @@
 defmodule Frontend.PageController do
   use Phoenix.Controller
 
+  plug :action
+
   def index(conn, _params) do
     render conn, "index"
   end
@@ -25,5 +27,13 @@ defmodule Frontend.PageController do
   end
   def show(conn, %{"page" => page}) do
     render conn, "hello"
+  end
+
+  def not_found(conn, _params) do
+    render conn, "not_found"
+  end
+
+  def error(conn, _params) do
+    render conn, "error"
   end
 end
