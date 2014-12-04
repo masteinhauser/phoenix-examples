@@ -1,4 +1,3 @@
 defmodule Frontend.LayoutView do
-  use Frontend.Views
-
+  use Frontend.View
 end

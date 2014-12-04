@@ -3,7 +3,7 @@
   "decimal": {:hex, :decimal, "0.2.5"},
   "ecto": {:hex, :ecto, "0.2.5"},
   "linguist": {:hex, :linguist, "0.1.4"},
-  "phoenix": {:hex, :phoenix, "0.5.0"},
+  "phoenix": {:hex, :phoenix, "0.6.1"},
   "plug": {:hex, :plug, "0.8.4"},
   "plug_byte_serve": {:hex, :plug_byte_serve, "0.3.0"},
   "poison": {:hex, :poison, "1.2.1"},

@@ -1,12 +1,13 @@
 defmodule Frontend.CommentController do
   use Phoenix.Controller
+  plug :put_layout, "application.html"
   plug :action
   plug Plug.Parsers, parsers: [:urlencoded, :multipart], limit: 1_000_000_000
 
   def comment(conn, %{"video" => video, "comment" => comment}) do
-
-    # {:ok, file} =
-    send_response(conn, 200, "text/plain", "Comment Received: video => #{video}, comment => #{comment}")
+    conn
+    |> put_resp_content_type("text/plain")
+    |> send_resp 200, "Comment Received: video => #{video}, comment => #{comment}"
   end
 end
 
