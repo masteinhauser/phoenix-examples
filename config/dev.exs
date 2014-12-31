@@ -1,8 +1,8 @@
 use Mix.Config
 
-config :phoenix, Frontend.Router,
+config :frontend, Frontend.Endpoint,
   http: [port: System.get_env("PORT") || 4000],
   debug_errors: true
 
 # Enables code reloading for development
-config :phoenix, :code_reloader, true
+config :frontend, :code_reloader, true
