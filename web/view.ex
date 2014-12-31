@@ -6,7 +6,6 @@ defmodule Frontend.View do
   using do
     quote do
       # Import common functionality
-      import Frontend.I18n
       import Frontend.Router.Helpers
 
       # Use Phoenix.HTML to import all HTML functions (forms, tags, etc)

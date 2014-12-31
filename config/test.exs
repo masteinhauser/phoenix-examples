@@ -1,5 +1,5 @@
 use Mix.Config
 
-config :phoenix, Frontend.Router,
+config :frontend, Frontend.Endpoint,
   http: [port: System.get_env("PORT") || 4001],
   catch_errors: false

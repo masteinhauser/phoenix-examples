@@ -25,7 +25,7 @@ defmodule Frontend.Mixfile do
   # { :barbat, "~> 0.1", github: "elixir-lang/barbat" }
   defp deps do
     [
-      {:phoenix,          "~> 0.6.1"},
+      {:phoenix,          "~> 0.7.2"},
       {:plug_byte_serve,  "~> 0.3.0"},
       {:cowboy,           "~> 1.0.0"},
       {:postgrex,         ">= 0.0.0"},

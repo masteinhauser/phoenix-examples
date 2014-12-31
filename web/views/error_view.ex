@@ -1,4 +1,4 @@
-defmodule Frontend.ErrorsView do
+defmodule Frontend.ErrorView do
   use Frontend.View
 
   def render("404.html", _assigns) do

@@ -5,7 +5,7 @@ use Mix.Config
 # to this project. If another project depends on this project, this
 # file won't be loaded nor affect the parent project.
 
-config :phoenix, Frontend.Router,
+config :frontend, Frontend.Endpoint,
   url: [host: "localhost"],
   http: [port: System.get_env("PORT")],
   https: false,
@@ -15,7 +15,7 @@ config :phoenix, Frontend.Router,
   error_controller: Upgrade.PageController
 
 # Session configuration
-config :phoenix, Frontend.Router,
+config :frontend, Frontend.Endpoint,
   session: [store: :cookie,
             key: "_frontend_key"]
 
