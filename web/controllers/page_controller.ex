@@ -1,5 +1,5 @@
 defmodule Frontend.PageController do
-  use Phoenix.Controller
+  use Frontend.Web, :controller
 
   plug :put_layout, "application.html"
   plug :action

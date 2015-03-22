@@ -1,3 +1,3 @@
 defmodule Frontend.PageView do
-  use Frontend.View
+  use Frontend.Web, :view
 end

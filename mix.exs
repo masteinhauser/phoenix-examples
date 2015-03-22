@@ -2,34 +2,34 @@ defmodule Frontend.Mixfile do
   use Mix.Project
 
   def project do
-    [ app: :frontend,
-      version: "0.1.0",
-      elixir: "~> 1.0.2",
-      elixirc_paths: ["lib", "web"],
-      compilers: [:phoenix] ++ Mix.compilers,
-      deps: deps ]
+    [app: :frontend,
+     version: "0.1.1",
+     elixir: "~> 1.0",
+     elixirc_paths: ["lib", "web"],
+     compilers: [:phoenix] ++ Mix.compilers,
+     deps: deps]
   end
 
   # Configuration for the OTP application
+  #
+  # Type `mix help compile.app` for more information
   def application do
     [
       mod: { Frontend, [] },
-      applications: [:logger, :postgrex, :ecto, :phoenix, :cowboy]
+      applications: [:phoenix, :cowboy, :logger]
     ]
   end
 
-  # Returns the list of dependencies in the format:
-  # { :foobar, git: "https://github.com/elixir-lang/foobar.git", tag: "0.1" }
+  # Specifies your project dependencies
   #
-  # To specify particular versions, regardless of the tag, do:
-  # { :barbat, "~> 0.1", github: "elixir-lang/barbat" }
+  # Type `mix help deps` for examples and options
   defp deps do
     [
-      {:phoenix,          "~> 0.7.2"},
-      {:plug_byte_serve,  "~> 0.3.0"},
-      {:cowboy,           "~> 1.0.0"},
-      {:postgrex,         ">= 0.0.0"},
-      {:ecto,             "~> 0.2.0"}
+      {:phoenix, "~> 0.10.0"},
+      {:phoenix_ecto, "~> 0.1"},
+      {:postgrex, ">= 0.0.0"},
+      {:cowboy, "~> 1.0"},
+      {:plug_byte_serve, "~> 0.3.0"}
     ]
   end
 end

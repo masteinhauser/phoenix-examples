@@ -1,29 +1,23 @@
 # This file is responsible for configuring your application
+# and its dependencies with the aid of the Mix.Config module.
+#
+# This configuration file is loaded before any dependency and
+# is restricted to this project.
 use Mix.Config
 
-# Note this file is loaded before any dependency and is restricted
-# to this project. If another project depends on this project, this
-# file won't be loaded nor affect the parent project.
-
+# Configures the endpoint
 config :frontend, Frontend.Endpoint,
   url: [host: "localhost"],
-  http: [port: System.get_env("PORT")],
-  https: false,
-  secret_key_base: "LQG7Q1$VS1=FFGFV_7HY@EP+Y2ED29I72P!GI^JD=I3LC0+&X9M$N=%L89S4U(*G%C1#4!!1Y668UBO2",
-  catch_errors: true,
+  secret_key_base: "/EPiRxNJKbySVceVGcmCD/t7gz7WtDy/lvOZrNC5elDhqUko4i0bGyPkumzLvg0N",
   debug_errors: false,
-  error_controller: Upgrade.PageController
-
-# Session configuration
-config :frontend, Frontend.Endpoint,
-  session: [store: :cookie,
-            key: "_frontend_key"]
+  pubsub: [name: Frontend.PubSub,
+           adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-# Import environment specific config. Note, this must remain at the bottom of
-# this file to properly merge your previous config entries.
+# Import environment specific config. This must remain at the bottom
+# of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

@@ -7,8 +7,12 @@ defmodule Frontend do
     import Supervisor.Spec, warn: false
 
     children = [
-      # Define workers and child supervisors to be supervised
-      # worker(Frontend.Worker, [arg1, arg2, arg3])
+      # Start the endpoint when the application starts
+      supervisor(Frontend.Endpoint, []),
+      # Start the Ecto repository
+      worker(Frontend.Repo, []),
+      # Here you could define other workers and supervisors as children
+      # worker(Frontend.Worker, [arg1, arg2, arg3]),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

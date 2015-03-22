@@ -1,5 +1,6 @@
 defmodule Frontend.VideoController do
-  use Phoenix.Controller
+  use Frontend.Web, :controller
+
   plug :put_layout, "application.html"
   plug :action
 

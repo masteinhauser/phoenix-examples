@@ -2,33 +2,33 @@ defmodule Frontend.Router do
   use Phoenix.Router
 
   pipeline :browser do
-    plug :accepts, ~w(html)
+    plug :accepts, ["html"]
     plug :fetch_session
+    plug :fetch_flash
+    plug :protect_from_forgery
   end
 
   pipeline :api do
-    plug :accepts, ~w(json)
+    plug :accepts, ["json"]
   end
 
-  scope "/" do
+  scope "/", Frontend do
     pipe_through :browser
 
-    # plug Plug.Static, at: "/static", from: :frontend
+    get "/", PageController, :index, as: :page
+    get "/hello", PageController, :hello
+    get "/video", PageController, :video
+    get "/bytes", PageController, :bytes
+    get "/upload", PageController, :upload
+    get "/comment", PageController, :comment
 
-    get "/", Frontend.PageController, :index, as: :page
-    get "/hello", Frontend.PageController, :hello
-    get "/video", Frontend.PageController, :video
-    get "/bytes", Frontend.PageController, :bytes
-    get "/upload", Frontend.PageController, :upload
-    get "/comment", Frontend.PageController, :comment
+    head "/bytes/:video", VideoController, :bytes_head
 
-    head "/bytes/:video", Frontend.VideoController, :bytes_head
+    get "/video/:video", VideoController, :send
+    get "/stream/:video", VideoController, :stream
+    get "/bytes/:video", VideoController, :bytes
 
-    get "/video/:video", Frontend.VideoController, :send
-    get "/stream/:video", Frontend.VideoController, :stream
-    get "/bytes/:video", Frontend.VideoController, :bytes
-
-    post "/upload", Frontend.VideoController, :upload
-    post "/comment", Frontend.CommentController, :comment
+    post "/upload", VideoController, :upload
+    post "/comment", CommentController, :comment
   end
 end
