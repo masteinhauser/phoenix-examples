@@ -8,7 +8,8 @@ use Mix.Config
 # Configures the endpoint
 config :frontend, Frontend.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "/EPiRxNJKbySVceVGcmCD/t7gz7WtDy/lvOZrNC5elDhqUko4i0bGyPkumzLvg0N",
+  http: [port: {:system, "PORT"}],
+  secret_key_base: "LQG7Q1$VS1=FFGFV_7HY@EP+Y2ED29I72P!GI^JD=I3LC0+&X9M$N=%L89S4U(*G%C1#4!!1Y668UBO2",
   debug_errors: false,
   pubsub: [name: Frontend.PubSub,
            adapter: Phoenix.PubSub.PG2]

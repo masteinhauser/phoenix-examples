@@ -8,7 +8,8 @@ use Mix.Config
 # meaningful, we use this information when generating URLs.
 config :frontend, Frontend.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [host: "example.com"]
+  url: [host: "phoenix-examples.mylessteinhauser.com"],
+  server: true
 
 # ## SSL Support
 #
