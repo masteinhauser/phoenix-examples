@@ -3,7 +3,7 @@ defmodule Frontend.Mixfile do
 
   def project do
     [app: :frontend,
-     version: "0.1.1",
+     version: "0.1.2",
      elixir: "~> 1.0",
      elixirc_paths: ["lib", "web"],
      compilers: [:phoenix] ++ Mix.compilers,
@@ -16,7 +16,7 @@ defmodule Frontend.Mixfile do
   def application do
     [
       mod: { Frontend, [] },
-      applications: [:phoenix, :cowboy, :logger]
+      applications: [:phoenix, :cowboy, :logger, :phoenix_ecto, :plug_byte_serve]
     ]
   end
 
@@ -29,7 +29,8 @@ defmodule Frontend.Mixfile do
       {:phoenix_ecto, "~> 0.1"},
       {:postgrex, ">= 0.0.0"},
       {:cowboy, "~> 1.0"},
-      {:plug_byte_serve, "~> 0.3.0"}
+      {:plug_byte_serve, "~> 0.3.0"},
+      {:exrm, "~> 0.14.16"}
     ]
   end
 end
