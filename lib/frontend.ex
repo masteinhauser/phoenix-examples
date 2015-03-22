@@ -10,7 +10,7 @@ defmodule Frontend do
       # Start the endpoint when the application starts
       supervisor(Frontend.Endpoint, []),
       # Start the Ecto repository
-      worker(Frontend.Repo, []),
+      #      worker(Frontend.Repo, []),
       # Here you could define other workers and supervisors as children
       # worker(Frontend.Worker, [arg1, arg2, arg3]),
     ]
