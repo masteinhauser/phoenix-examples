@@ -1,5 +1,6 @@
 defmodule Frontend.CommentController do
-  use Phoenix.Controller
+  use Frontend.Web, :controller
+
   plug :put_layout, "application.html"
   plug :action
   plug Plug.Parsers, parsers: [:urlencoded, :multipart], limit: 1_000_000_000

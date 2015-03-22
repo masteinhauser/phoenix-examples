@@ -1,8 +1,10 @@
 defmodule Frontend.Endpoint do
   use Phoenix.Endpoint, otp_app: :frontend
 
+  # Serve at "/" the given assets from "priv/static" directory
   plug Plug.Static,
-    at: "/", from: :frontend
+    at: "/", from: :frontend,
+    only: ~w(css images js favicon.ico robots.txt)
 
   plug Plug.Logger
 
@@ -21,8 +23,8 @@ defmodule Frontend.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_frontend_key",
-    signing_salt: "MdZQyfJz",
-    encryption_salt: "DGr5WYVu"
+    signing_salt: "Fa3gE/LD",
+    encryption_salt: "fscL5iL9"
 
   plug :router, Frontend.Router
 end

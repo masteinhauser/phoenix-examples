@@ -1,3 +1,3 @@
 defmodule Frontend.VideoView do
-  use Frontend.View
+  use Frontend.Web, :view
 end
